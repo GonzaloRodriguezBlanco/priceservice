@@ -1,0 +1,17 @@
+name: date
+description: The date on which the price is checked
+in: path
+required: true
+schema:
+  $ref: ../schemas/Date.yaml
+examples:
+  day-14-at-10-example:
+    $ref: ../examples/Date/dateForDay14At10Example.yaml
+  day-14-at-16-example:
+    $ref: ../examples/Date/dateForDay14At16Example.yaml
+  day-14-at-21-example:
+    $ref: ../examples/Date/dateForDay14At21Example.yaml
+  day-15-at-10-example:
+    $ref: ../examples/Date/dateForDay15At10Example.yaml
+  day-16-at-21-example:
+    $ref: ../examples/Date/dateForDay16At21Example.yaml

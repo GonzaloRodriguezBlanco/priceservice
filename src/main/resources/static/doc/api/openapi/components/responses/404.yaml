@@ -1,0 +1,18 @@
+description: Product not found with the provided 'productKey'
+content:
+  application/json:
+    schema:
+      required:
+        - title
+        - status
+      allOf:
+        - $ref: ../schemas/ProblemDetails.yaml
+        - type: object
+          properties:
+            status:
+              default: 404
+            title:
+              default: Not found.
+    examples:
+      provided-productKey-not-found-response-example:
+        $ref: ../examples/ErrorResponse/notFoundResponseExample.yaml

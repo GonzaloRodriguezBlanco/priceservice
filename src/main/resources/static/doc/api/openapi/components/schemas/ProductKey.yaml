@@ -1,0 +1,10 @@
+description: The product identity composed by productId and brandId
+type: object
+required:
+  - productId
+  - brandId
+properties:
+  productId:
+    $ref: ProductId.yaml
+  brandId:
+    $ref: BrandId.yaml

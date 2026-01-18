@@ -1,0 +1,16 @@
+description: The price corresponding to the provided 'productKey' in the current or given date
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/Price.yaml
+    examples:
+      test-request-for-14-at-10-success-response-example:
+        $ref: ../examples/tests/testRequestFor14At10SuccessResponseExample.yaml
+      test-request-for-14-at-16-success-response-example:
+        $ref: ../examples/tests/testRequestFor14At16SuccessResponseExample.yaml
+      test-request-for-14-at-21-success-response-example:
+        $ref: ../examples/tests/testRequestFor14At21SuccessResponseExample.yaml
+      test-request-for-15-at-10-success-response-example:
+        $ref: ../examples/tests/testRequestFor15At10SuccessResponseExample.yaml
+      test-request-for-16-at-21-success-response-example:
+        $ref: ../examples/tests/testRequestFor16At21SuccessResponseExample.yaml

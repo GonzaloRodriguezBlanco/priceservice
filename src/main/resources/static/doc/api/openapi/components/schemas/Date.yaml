@@ -1,0 +1,4 @@
+description: The date on which the price is checked
+type: string
+format: date-time
+example: "2020-06-14T10:00:00Z"

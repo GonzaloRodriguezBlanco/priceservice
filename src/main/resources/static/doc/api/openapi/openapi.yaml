@@ -1,0 +1,51 @@
+openapi: '3.0.0'
+info:
+  title: Price Query Service API
+  description: Query the price for any product in the current or given date.
+  version: 1.0.1
+  license:
+    name: Proprietary
+  contact:
+    name: Gonzalo Rodriguez Blanco
+    email: gonzalo@rodriguez-blanco.com
+    url: https://rodriguez-blanco.com
+
+servers:
+  - url: http://localhost:8080/api
+    description: The local development API server
+
+tags:
+  - name: Price
+
+paths:
+  /prices/{productKey}/date/{date}:
+    parameters:
+      - $ref: components/parameters/productKey.yaml
+      - $ref: components/parameters/date.yaml
+    get:
+      tags:
+        - "Price"
+      summary: Get the product price
+      responses:
+        '200':
+          $ref: components/responses/200.yaml
+        '404':
+          $ref: components/responses/404.yaml
+        '500':
+          $ref: components/responses/500.yaml
+  /prices/{productKey}:
+    parameters:
+      - $ref: components/parameters/productKey.yaml
+    post:
+      tags:
+        - "Price"
+      summary: Create a new price for a product
+      requestBody:
+        $ref: components/requestBodies/CreatePrice.yaml
+      responses:
+        '201':
+          $ref: components/responses/201.yaml
+        '409':
+          $ref: components/responses/409.yaml
+        '500':
+          $ref: components/responses/500.yaml

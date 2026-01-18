@@ -1,0 +1,4 @@
+summary: Invalid productId format in productKey
+value:
+  productId: "productIdAsText"
+  brandId: 1
