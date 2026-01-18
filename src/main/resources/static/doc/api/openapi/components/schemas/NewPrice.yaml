@@ -1,0 +1,37 @@
+type: object
+required:
+  - priceList
+  - startDate
+  - endDate
+  - price
+  - currency
+properties:
+  priceList:
+    description: Identifier for the applied price list
+    type: integer
+    format: int32
+  startDate:
+    description: Start date on which the price applies
+    type: string
+    format: date-time
+  endDate:
+    description: End date on which the price applies
+    type: string
+    format: date-time
+  price:
+    description: Final sale price
+    type: number
+    format: double
+  currency:
+    description: Currency
+    type: string
+    enum:
+      - EUR
+      - USD
+      - CNY
+example:
+  priceList: 1
+  startDate: "2020-06-14T00:00:00"
+  endDate: "2020-12-31T23:59:59"
+  price: 35.50
+  currency: EUR

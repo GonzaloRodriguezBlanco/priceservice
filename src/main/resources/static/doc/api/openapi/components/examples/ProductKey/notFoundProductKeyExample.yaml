@@ -1,0 +1,6 @@
+summary: Not Found productKey
+value:
+  detail: "No such Price for productId: 11111, brand: 9 and date: 2020-06-14T16:00."
+  instance: "http://localhost:8080/api/prices/productId=11111,brandId=9/date/2020-06-14T16%3A00%3A00Z"
+  status: 404
+  title: Not found

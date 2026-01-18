@@ -1,0 +1,15 @@
+description: Product not found with the provided 'productKey'
+content:
+  application/json:
+    schema:
+      required:
+        - title
+        - status
+      allOf:
+        - $ref: ../schemas/ProblemDetails.yaml
+        - type: object
+          properties:
+            status:
+              default: 409
+            title:
+              default: Conflict.
