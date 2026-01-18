@@ -3,8 +3,6 @@ services:
     build:
       context: .
       dockerfile: etc/docker/spring/Dockerfile
-    depends_on:
-      - kafka
     ports:
       - "8080:8080"
       - "5005:5005"
