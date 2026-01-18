@@ -8,7 +8,7 @@ En la base de datos de comercio electrónico de la compañía disponemos de la t
 |    <small>1     | <small>2020-06-15-16.00.00 | <small>2020-12-31-23.59.59 |         <small>4          |       <small>35455        |        <small>1         |     <small>38.95     |     <small>EUR      |
 **Campos**
 
-- *BRAND_ID*: foreign key de la cadena del grupo (1 = ZARA).
+- *BRAND_ID*: foreign key de la cadena del grupo (1 = ****).
 - *START_DATE, END_DATE*: rango de fechas en el que aplica el precio tarifa indicado.
 - *PRICE_LIST*: Identificador de la tarifa de precios aplicable.
 - *PRODUCT_ID*: Identificador código de producto.
@@ -29,11 +29,11 @@ Construir una aplicación/servicio en **SpringBoot** que provea un **endpoint re
 
 Desarrollar unos test al endpoint rest que validen las siguientes peticiones al servicio con los datos del ejemplo:
 
-- Test 1: petición a las 10:00 del día 14 del producto 35455 para la brand 1 (ZARA)  
-- Test 2: petición a las 16:00 del día 14 del producto 35455 para la brand 1 (ZARA)  
-- Test 3: petición a las 21:00 del día 14 del producto 35455 para la brand 1 (ZARA)  
-- Test 4: petición a las 10:00 del día 15 del producto 35455 para la brand 1 (ZARA)  
-- Test 5: petición a las 21:00 del día 16 del producto 35455 para la brand 1 (ZARA)
+- Test 1: petición a las 10:00 del día 14 del producto 35455 para la brand 1 (****)  
+- Test 2: petición a las 16:00 del día 14 del producto 35455 para la brand 1 (****)  
+- Test 3: petición a las 21:00 del día 14 del producto 35455 para la brand 1 (****)  
+- Test 4: petición a las 10:00 del día 15 del producto 35455 para la brand 1 (****)  
+- Test 5: petición a las 21:00 del día 16 del producto 35455 para la brand 1 (****)
 
 **Se valorará**
 

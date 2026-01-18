@@ -1,4 +1,4 @@
-# API Price Query Service
+# API Product Price Service
 
 > :information_source:
 > This project uses hexagonal, DDD, message buses and BDD.
@@ -11,6 +11,20 @@
 
 The goal of this API is to provide the active product price on a given date.
 
+## Usage
+
+You could run the service from *docker* or *podman* or directly from your IDE:
+
+```shell
+# Docker
+docker compose up -d
+# Podman
+podman compose up -d
+```
+
+Then you can review the OpenApi documentation in [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+This documentation have the functional examples included in the acceptance test so you could execute them from de swagger ui.
+
 ## Functional Requirements
 
 [Complete problem statement (Spanish)](doc/problem_statement.md)
@@ -19,7 +33,7 @@ The goal of this API is to provide the active product price on a given date.
     
 ![Service requirements](doc/images/service_requirements.png "Service requirements")
 
-*Acceptance Test*
+**Acceptance Test**
 ```gherkin
 Feature:
   As a user,
@@ -46,5 +60,15 @@ Feature:
       | 35455     | 1       | "2020-06-15T10:00:00" | 30.50         |
       | 35455     | 1       | "2020-06-16T21:00:00" | 38.95         |
 ```
+## Testing
 
+You have two options to execute the tests:
+
+1. From the terminal with the command
+   ```shell
+    ./mvnw test -Dgroups=acceptance
+    ```
+2. From IntelliJ IDE directly opening and executing the feature file
+    [query_the_product_price.feature](src/test/resources/com/rodriguezblanco/priceservice/query_the_product_price.feature)
+   
 
