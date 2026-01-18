@@ -1,0 +1,5 @@
+summary: Unexpected error
+value:
+  status: 500
+  title: Internal server error
+  detail: Unexpected error

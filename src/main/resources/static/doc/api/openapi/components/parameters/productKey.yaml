@@ -1,0 +1,17 @@
+name: productKey
+description: The unique identifier for a product
+in: path
+required: true
+style: simple
+explode: true
+schema:
+  $ref: ../schemas/ProductKey.yaml
+examples:
+  defaultProductKeyExample:
+    $ref: ../examples/ProductKey/defaultProductKeyExample.yaml
+  not-found-product-example:
+    $ref: ../examples/ProductKey/notFoundProductKeyExample.yaml
+  invalid-productId-example:
+    $ref: ../examples/ProductKey/invalidProductIdForProductKeyExample.yaml
+  invalid-brandId-example:
+    $ref: ../examples/ProductKey/invalidBrandIdForProductKeyExample.yaml

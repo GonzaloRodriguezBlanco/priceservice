@@ -1,0 +1,18 @@
+description: Unexpected error
+content:
+  application/json:
+    schema:
+      required:
+        - title
+        - status
+      allOf:
+        - $ref: ../schemas/ProblemDetails.yaml
+        - type: object
+          properties:
+            status:
+              default: 500
+            title:
+              default: Internal Server Error.
+    examples:
+      generic-server-error-example:
+        $ref: ../examples/ErrorResponse/serverErrorResponseExample.yaml
