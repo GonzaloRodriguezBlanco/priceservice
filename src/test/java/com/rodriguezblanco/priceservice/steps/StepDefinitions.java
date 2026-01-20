@@ -45,15 +45,15 @@ public class StepDefinitions {
     public ProductPrice priceEntryTransformer(Map<String, String> entry) {
         return ProductPrice.create(
                 ProductPriceIdentity.of(
-                        Integer.valueOf(entry.get("brand_id")),
+                        Short.valueOf(entry.get("brand_id")),
                         Long.valueOf(entry.get("product_id")),
-                        Integer.valueOf(entry.get("price_list"))
+                        Short.valueOf(entry.get("price_list"))
                 ),
                 Period.of(
                         LocalDateTime.parse(entry.get("start_date")),
                         LocalDateTime.parse(entry.get("end_date"))
                 ),
-                Integer.valueOf(entry.get("priority")),
+                Short.valueOf(entry.get("priority")),
                 SellingPrice.of(
                         Double.valueOf(entry.get("price")),
                         Currency.valueOf(entry.get("curr"))
