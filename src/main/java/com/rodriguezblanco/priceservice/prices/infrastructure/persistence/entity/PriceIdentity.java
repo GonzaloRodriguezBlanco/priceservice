@@ -5,13 +5,13 @@ import java.util.Objects;
 
 public class PriceIdentity implements Serializable {
     private Long productId;
-    private Integer brandId;
-    private Integer priceList;
+    private Short brandId;
+    private Short priceList;
 
     public PriceIdentity() {
     }
 
-    public PriceIdentity(Long productId, Integer brandId, Integer priceList) {
+    public PriceIdentity(Long productId, Short brandId, Short priceList) {
         this.productId = productId;
         this.brandId = brandId;
         this.priceList = priceList;
