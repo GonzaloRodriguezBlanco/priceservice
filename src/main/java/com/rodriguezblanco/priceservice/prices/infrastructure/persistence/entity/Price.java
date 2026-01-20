@@ -5,33 +5,44 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-@Table(name = "PRICES")
+@Table(
+        name = "PRICES",
+        indexes = {
+                @Index(name = "start_date_end_date_idx", columnList = "startDate, endDate"),
+                @Index(name = "priority_sort_idx", columnList = "priority DESC")
+        }
+)
 @Entity
 @IdClass(PriceIdentity.class)
 public class Price {
     @Id
     private Long productId;
     @Id
-    private Integer brandId;
+    @Column(columnDefinition = "SMALLINT")
+    private Short brandId;
     @Id
-    private Integer priceList;
+    @Column(columnDefinition = "SMALLINT")
+    private Short priceList;
 
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private Integer priority;
+
+    @Column(columnDefinition = "SMALLINT")
+    private Short priority;
     private Double price;
     @Enumerated(EnumType.STRING)
+    @Column(length = 3)
     private Currency currency;
 
     public Price() {
     }
 
     public Price(Long productId,
-                 Integer brandId,
-                 Integer priceList,
+                 Short brandId,
+                 Short priceList,
                  LocalDateTime startDate,
                  LocalDateTime endDate,
-                 Integer priority,
+                 Short priority,
                  Double price,
                  Currency currency) {
         this.productId = productId;
@@ -48,11 +59,11 @@ public class Price {
         return productId;
     }
 
-    public Integer brandId() {
+    public Short brandId() {
         return brandId;
     }
 
-    public Integer priceList() {
+    public Short priceList() {
         return priceList;
     }
 
@@ -64,7 +75,7 @@ public class Price {
         return endDate;
     }
 
-    public Integer priority() {
+    public Short priority() {
         return priority;
     }
 
@@ -77,11 +88,11 @@ public class Price {
     }
 
     public static Price of(Long productId,
-                           Integer brandId,
-                           Integer priceList,
+                           Short brandId,
+                           Short priceList,
                            LocalDateTime startDate,
                            LocalDateTime endDate,
-                           Integer priority,
+                           Short priority,
                            Double price,
                            Currency currency) {
         return new Price(productId,

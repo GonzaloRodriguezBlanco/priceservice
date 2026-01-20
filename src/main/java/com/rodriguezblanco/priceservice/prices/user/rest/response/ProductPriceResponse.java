@@ -6,16 +6,16 @@ import java.time.LocalDateTime;
 
 public record ProductPriceResponse(
         Long productId,
-        Integer brandId,
-        Integer priceList,
+        Short brandId,
+        Short priceList,
         LocalDateTime from,
         LocalDateTime to,
         Double sellingPrice,
         Currency currency
 ) {
     public static ProductPriceResponse of(Long productId,
-                     Integer brandId,
-                     Integer priceList,
+                     Short brandId,
+                     Short priceList,
                      LocalDateTime from,
                      LocalDateTime to,
                      Double sellingPrice,

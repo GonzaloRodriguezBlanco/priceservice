@@ -1,11 +1,11 @@
 package com.rodriguezblanco.priceservice.prices.domain.valueobject;
 
 public class ProductPriceIdentity {
-    private final Integer brandId;
+    private final Short brandId;
     private final Long productId;
-    private final Integer priceList;
+    private final Short priceList;
 
-    public Integer brandId() {
+    public Short brandId() {
         return brandId;
     }
 
@@ -13,17 +13,17 @@ public class ProductPriceIdentity {
         return productId;
     }
 
-    public Integer priceList() {
+    public Short priceList() {
         return priceList;
     }
 
-    private ProductPriceIdentity(Integer brandId, Long productId, Integer priceList) {
+    private ProductPriceIdentity(Short brandId, Long productId, Short priceList) {
         this.brandId = brandId;
         this.productId = productId;
         this.priceList = priceList;
     }
 
-    public static ProductPriceIdentity of(Integer brandId, Long productPrice, Integer priceList) {
+    public static ProductPriceIdentity of(Short brandId, Long productPrice, Short priceList) {
         return new ProductPriceIdentity(brandId, productPrice, priceList);
     }
 }
