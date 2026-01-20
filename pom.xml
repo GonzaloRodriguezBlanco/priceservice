@@ -11,8 +11,8 @@
 	<groupId>com.rodriguezblanco</groupId>
 	<artifactId>priceservice</artifactId>
 	<version>1.0.0</version>
-	<name>priceservice</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Price Service</name>
+	<description>Service to search for product prices</description>
 	<url/>
 	<licenses>
 		<license/>
