@@ -1,0 +1,125 @@
+[
+  {
+    "productKey": "productId=35455,brandId=1",
+    "date": "2020-06-14T10:00:00Z",
+    "expectedStatus": 200,
+    "expectedContentTypeHeader": "application/json",
+    "expectedResponseBody": {
+      "productId": 35455,
+      "brandId": 1,
+      "priceList": 1,
+      "from": "2020-06-14T00:00:00",
+      "to": "2020-12-31T23:59:59",
+      "sellingPrice": 35.5,
+      "currency": "EUR"
+    }
+  },
+  {
+    "productKey": "productId=35455,brandId=1",
+    "date": "2020-06-14T16:00:00Z",
+    "expectedStatus": 200,
+    "expectedContentTypeHeader": "application/json",
+    "expectedResponseBody": {
+      "productId": 35455,
+      "brandId": 1,
+      "priceList": 2,
+      "from": "2020-06-14T15:00:00",
+      "to": "2020-06-14T18:30:00",
+      "sellingPrice": 25.45,
+      "currency": "EUR"
+    }
+  },
+  {
+    "productKey": "productId=35455,brandId=1",
+    "date": "2020-06-14T21:00:00Z",
+    "expectedStatus": 200,
+    "expectedContentTypeHeader": "application/json",
+    "expectedResponseBody": {
+      "productId": 35455,
+      "brandId": 1,
+      "priceList": 1,
+      "from": "2020-06-14T00:00:00",
+      "to": "2020-12-31T23:59:59",
+      "sellingPrice": 35.5,
+      "currency": "EUR"
+    }
+  },
+  {
+    "productKey": "productId=35455,brandId=1",
+    "date": "2020-06-15T10:00:00Z",
+    "expectedStatus": 200,
+    "expectedContentTypeHeader": "application/json",
+    "expectedResponseBody": {
+      "productId": 35455,
+      "brandId": 1,
+      "priceList": 3,
+      "from": "2020-06-15T00:00:00",
+      "to": "2020-06-15T11:00:00",
+      "sellingPrice": 30.5,
+      "currency": "EUR"
+    }
+  },
+  {
+    "productKey": "productId=35455,brandId=1",
+    "date": "2020-06-16T21:00:00Z",
+    "expectedStatus": 200,
+    "expectedContentTypeHeader": "application/json",
+    "expectedResponseBody": {
+      "productId": 35455,
+      "brandId": 1,
+      "priceList": 4,
+      "from": "2020-06-15T16:00:00",
+      "to": "2020-12-31T23:59:59",
+      "sellingPrice": 38.95,
+      "currency": "EUR"
+    }
+  },
+  {
+    "productKey": "productId=35455,brandId=2",
+    "date": "2020-06-16T21:00:00Z",
+    "expectedStatus": 404,
+    "expectedContentTypeHeader": "application/problem+json",
+    "expectedResponseBody": {
+      "detail": "Price not found for (brand: 2, product: 35455, date: 2020-06-16T21:00).",
+      "instance": "http://localhost:8080/api/prices/productId=35455,brandId=2/date/2020-06-16T21:00:00Z",
+      "status": 404,
+      "title": "Not Found"
+    }
+  },
+  {
+    "productKey": "productId=35455",
+    "date": "2020-06-16T21:00:00Z",
+    "expectedStatus": 400,
+    "expectedContentTypeHeader": "application/problem+json",
+    "expectedResponseBody": {
+      "detail": "Format error in productKey, given 'productId=35455'. Variable format should be like: 'productId=35455,brandId=1'",
+      "instance": "http://localhost:8080/api/prices/productId=35455/date/2020-06-16T21:00:00Z",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  {
+    "productKey": "brandId=1",
+    "date": "2020-06-16T21:00:00Z",
+    "expectedStatus": 400,
+    "expectedContentTypeHeader": "application/problem+json",
+    "expectedResponseBody": {
+      "detail": "Format error in productKey, given 'brandId=1'. Variable format should be like: 'productId=35455,brandId=1'",
+      "instance": "http://localhost:8080/api/prices/brandId=1/date/2020-06-16T21:00:00Z",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  },
+  {
+    "productKey": "productId=35455,brandId=1",
+    "date": "2020",
+    "expectedStatus": 400,
+    "expectedContentTypeHeader": "application/problem+json",
+    "expectedResponseBody": {
+      "detail": "Invalid format for date. Should be '2020-06-14T10:00:00Z'",
+      "instance": "http://localhost:8080/api/prices/productId=35455,brandId=1/date/2020",
+      "status": 400,
+      "title": "Bad Request"
+    }
+  }
+]
