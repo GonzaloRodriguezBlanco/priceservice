@@ -1,8 +1,8 @@
-# Architecture
+## Architecture
 
 This project is based on hexagonal architecture, messages buses and DDD.
 
-## Hexagonal Architecture
+### Hexagonal Architecture
 
 The Hexagonal Architecture pursues two main objectives:
 1. It allows a software application to be driven by different actors.
@@ -36,7 +36,7 @@ The advantages of applications which uses Hexagonal Architecture are:
 - It allows to develop the application without external servers.
 - It makes it easier to change the external infrastructure or technology.
 
-## CQS
+### CQS
 
 CQS stands for Command Query Separation. The fundamental idea is to separate the object's methods
 in two categories:
@@ -46,7 +46,7 @@ in two categories:
 We will apply this principle in the design of the **Application Services** use cases. Everything will be
 a command or a query.
 
-## Message Buses
+### Message Buses
 
 A **bus** is an information (**message**) transmission system. This abstraction can be used in event based architectures
 or as a loose coupling mechanism. The idea is that we have several systems which communicates through messages.

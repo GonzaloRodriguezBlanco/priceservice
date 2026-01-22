@@ -40,3 +40,6 @@ Desarrollar unos test al endpoint rest que validen las siguientes peticiones al 
 1. Diseño y construcción del servicio.
 2. Calidad de Código.
 3. Resultados correctos en los test.
+
+![Service requirements](doc/images/service_requirements.png "Service requirements")
+
