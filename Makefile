@@ -19,7 +19,8 @@ help:
 	@echo "$(CD)status$(CG) $(CC) Status"
 	@echo "$(CD)logs$(CG) [service=application] $(CC) Show service log (default: application)"
 	@echo ""
-	@echo "$(CD)tests$(CG) $(CC) Execute unit test"
+	@echo "$(CD)unit$(CG) $(CC) Execute unit test"
+	@echo "$(CD)integration$(CG) $(CC) Execute integration test"
 	@echo "$(CD)acceptance$(CG) $(CC) Execute acceptance BDD test"
 	@echo "$(CD)e2e$(CG) $(CC) Execute E2E Postman test"
 
@@ -58,13 +59,17 @@ endif
 logs:
 	@$(CONTAINER_RUNTIME) compose -f compose.yaml logs -f $(SERVICE)
 
-.PHONY: tests
-tests:
-	./mvnw test -Dgroups=unit
+.PHONY: unit
+unit:
+	./mvnw clean test -Punit
+
+.PHONY: integration
+integration:
+	./mvnw clean test -Pintegration
 
 .PHONY: acceptance
 acceptance:
-	./mvnw test -Dgroups=acceptance
+	./mvnw clean test -Pacceptance
 
 .PHONY: e2e
 e2e:
