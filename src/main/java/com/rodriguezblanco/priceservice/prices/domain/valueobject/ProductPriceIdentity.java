@@ -23,7 +23,7 @@ public class ProductPriceIdentity {
         this.priceList = priceList;
     }
 
-    public static ProductPriceIdentity of(Short brandId, Long productPrice, Short priceList) {
-        return new ProductPriceIdentity(brandId, productPrice, priceList);
+    public static ProductPriceIdentity of(Short brandId, Long productId, Short priceList) {
+        return new ProductPriceIdentity(brandId, productId, priceList);
     }
 }

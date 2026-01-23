@@ -31,4 +31,9 @@ public record ProductKey(
         Integer brandId = Integer.valueOf(Objects.requireNonNull(StringUtils.split(asArray[1], "="))[1]);
         return new ProductKey(productId, brandId);
     }
+
+    @Override
+    public String toString() {
+        return "productId=" + productId +",brandId=" + brandId;
+    }
 }

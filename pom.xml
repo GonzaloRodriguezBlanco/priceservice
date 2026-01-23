@@ -29,6 +29,9 @@
 	<properties>
 		<java.version>25</java.version>
 		<cucumber.version>7.33.0</cucumber.version>
+		<test.tags/>
+		<cucumber.filter.tags/>
+		<cucumber.ansi-colors>true</cucumber.ansi-colors>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -104,12 +107,26 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- Source: https://mvnrepository.com/artifact/me.fabriciorby/maven-surefire-junit5-tree-reporter -->
+		<dependency>
+			<groupId>me.fabriciorby</groupId>
+			<artifactId>maven-surefire-junit5-tree-reporter</artifactId>
+			<version>1.5.1</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
@@ -122,17 +139,114 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.5.4</version>
+				<version>3.5.3</version>
+				<dependencies>
+					<dependency>
+						<groupId>me.fabriciorby</groupId>
+						<artifactId>maven-surefire-junit5-tree-reporter</artifactId>
+						<version>1.5.1</version>
+					</dependency>
+				</dependencies>
 				<configuration>
-					<argLine>-Dspring.profiles.active=test</argLine>
-					<properties>
-						<configurationParameters>
-							cucumber.junit-platform.naming-strategy=long
-						</configurationParameters>
-					</properties>
+					<useModulePath>false</useModulePath>
+					<useFile>false</useFile>
+					<printSummary>true</printSummary>
+					<reportFormat>plain</reportFormat>
+					<trimStackTrace>true</trimStackTrace>
+					<statelessTestsetInfoReporter
+							implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter">
+					</statelessTestsetInfoReporter>
+					<argLine>
+						-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
+						-Xshare:off
+					</argLine>
 				</configuration>
+				<executions>
+					<execution>
+						<id>unit</id>
+						<configuration>
+							<includes>
+								<include>**/UnitSuite.java</include>
+							</includes>
+							<consoleOutputReporter>
+								<disable>true</disable>
+							</consoleOutputReporter>
+						</configuration>
+					</execution>
+					<execution>
+						<id>integration</id>
+						<configuration>
+							<includes>
+								<include>**/IntegrationSuite.java</include>
+							</includes>
+							<consoleOutputReporter>
+								<disable>true</disable>
+							</consoleOutputReporter>
+						</configuration>
+					</execution>
+					<execution>
+						<id>acceptance</id>
+						<configuration>
+							<includes>
+								<include>**/AcceptanceSuite.java</include>
+							</includes>
+							<consoleOutputReporter>
+								<disable>false</disable>
+							</consoleOutputReporter>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
+
+			<!-- Integration + Acceptance tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.5.3</version>
+				<configuration>
+					<useFile>false</useFile>
+					<printSummary>true</printSummary>
+					<reportFormat>plain</reportFormat>
+					<trimStackTrace>true</trimStackTrace>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
+	<profiles>
+
+		<!-- Unit tests -->
+		<profile>
+			<id>unit</id>
+			<properties>
+				<test>**/UnitSuite.java</test>
+			</properties>
+		</profile>
+
+		<!-- Integration tests -->
+		<profile>
+			<id>integration</id>
+			<properties>
+				<test>**/IntegrationSuite.java</test>
+			</properties>
+		</profile>
+
+		<!-- Acceptance -->
+		<profile>
+			<id>acceptance</id>
+			<properties>
+				<test>**/AcceptanceSuite.java</test>
+			</properties>
+		</profile>
+
+	</profiles>
 
 </project>

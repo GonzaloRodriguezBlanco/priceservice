@@ -1,6 +1,5 @@
-package com.rodriguezblanco.priceservice.steps;
+package com.rodriguezblanco.priceservice.acceptance.steps;
 
-import com.rodriguezblanco.priceservice.AcceptanceTest;
 import com.rodriguezblanco.priceservice.prices.domain.ProductPriceRepository;
 import com.rodriguezblanco.priceservice.prices.domain.entity.ProductPrice;
 import com.rodriguezblanco.priceservice.prices.domain.valueobject.Currency;
@@ -12,10 +11,7 @@ import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.client.RestTestClient;
 import org.springframework.web.util.HtmlUtils;
 
@@ -25,12 +21,6 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@CucumberContextConfiguration
-@SpringBootTest(
-        classes = AcceptanceTest.class,
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-)
-@AutoConfigureRestTestClient
 public class StepDefinitions {
     @Autowired
     private RestTestClient restTestClient;
