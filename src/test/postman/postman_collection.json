@@ -1,0 +1,326 @@
+{
+  "info": {
+    "_postman_id": "7c17969a-1282-4eda-9159-ed1b66711115",
+    "name": "Price Service API",
+    "description": "Service to search for product prices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3857351",
+    "_collection_link": "https://go.postman.co/collection/3857351-7c17969a-1282-4eda-9159-ed1b66711115?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "prices",
+          "item": [
+            {
+              "name": "{productKey}",
+              "item": [
+                {
+                  "name": "date",
+                  "item": [
+                    {
+                      "name": "{date}",
+                      "item": [
+                        {
+                          "name": "Query the active product price at a given date",
+                          "event": [
+                            {
+                              "listen": "test",
+                              "script": {
+                                "exec": [
+                                  "",
+                                  "var expectedStatus = parseInt(pm.collectionVariables.get(\"expectedStatus\"));",
+                                  "var expectedContentTypeHeader = pm.collectionVariables.get(\"expectedContentTypeHeader\");",
+                                  "var expectedResponseBody = JSON.parse(pm.collectionVariables.get(\"expectedResponseBody\"))",
+                                  "",
+                                  "pm.test(`Status code is ${expectedStatus}`, function () {",
+                                  "    pm.expect(expectedStatus).to.eql(pm.response.code)",
+                                  "});",
+                                  "pm.test(`Content-Type is ${expectedContentTypeHeader}`, function () {",
+                                  "    pm.response.to.have.header(\"Content-Type\")",
+                                  "    pm.expect(expectedContentTypeHeader).to.eql(pm.response.headers.get(\"Content-Type\"))",
+                                  "});",
+                                  "pm.test(\"Response Body is as expected\", function () {",
+                                  "    var actualResponseBody = pm.response.json();",
+                                  "    pm.expect(expectedResponseBody).to.eql(actualResponseBody);",
+                                  "});",
+                                  ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            },
+                            {
+                              "listen": "prerequest",
+                              "script": {
+                                "exec": [
+                                  "// Defaults",
+                                  "var expectedStatus = 200",
+                                  "var expectedContentTypeHeader = \"application/json\"",
+                                  "var expectedResponseBody = {\"productId\":35455,\"brandId\":1,\"priceList\":1,\"from\":\"2020-06-14T00:00:00\",\"to\":\"2020-12-31T23:59:59\",\"sellingPrice\":35.5,\"currency\":\"EUR\"}",
+                                  "",
+                                  "// If has iterationData update vars",
+                                  "var iterationData = pm.iterationData.toObject();",
+                                  "if (iterationData != null) {",
+                                  "    expectedStatus = iterationData.expectedStatus",
+                                  "    expectedContentTypeHeader = iterationData.expectedContentTypeHeader",
+                                  "    expectedResponseBody = iterationData.expectedResponseBody",
+                                  "}",
+                                  "// Set values",
+                                  "pm.collectionVariables.set(\"expectedStatus\", expectedStatus);",
+                                  "pm.collectionVariables.set(\"expectedContentTypeHeader\", expectedContentTypeHeader);",
+                                  "pm.collectionVariables.set(\"expectedResponseBody\", JSON.stringify(expectedResponseBody));",
+                                  ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                              }
+                            }
+                          ],
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/prices/:productKey/date/:date",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "prices",
+                                ":productKey",
+                                "date",
+                                ":date"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productKey",
+                                  "value": "{{productKey}}",
+                                  "description": "The unique identifier for a product"
+                                },
+                                {
+                                  "key": "date",
+                                  "value": "{{date}}",
+                                  "description": "The date on which the price is checked"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "name": "Found the price",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/prices/:productKey/date/:date",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "prices",
+                                    ":productKey",
+                                    "date",
+                                    ":date"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productKey",
+                                      "value": "brandId=string,productId=string",
+                                      "description": "The unique identifier for a product"
+                                    },
+                                    {
+                                      "key": "date",
+                                      "value": "2020-06-14T10:00:00Z",
+                                      "description": "The date on which the price is checked"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"productId\": 4808,\n  \"brandId\": 4649,\n  \"priceList\": 5708,\n  \"from\": \"1949-04-25T13:52:51.970Z\",\n  \"to\": \"2018-07-28T03:14:11.913Z\",\n  \"sellingPrice\": 4694.497575506769,\n  \"currency\": \"EUR\"\n}"
+                            },
+                            {
+                              "name": "Bad Request",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/prices/:productKey/date/:date",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "prices",
+                                    ":productKey",
+                                    "date",
+                                    ":date"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productKey",
+                                      "value": "brandId=string,productId=string",
+                                      "description": "The unique identifier for a product"
+                                    },
+                                    {
+                                      "key": "date",
+                                      "value": "2020-06-14T10:00:00Z",
+                                      "description": "The date on which the price is checked"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"type\": \"http://OZmqsaJVWFKTibexBXkrxUNmyoAe.gmqdx5VJ-VI5zVVCxhR1gXx10aLqq8v\",\n  \"title\": \"string\",\n  \"status\": 2471,\n  \"detail\": \"string\",\n  \"instance\": \"https://ePZJqo.vgchB-2fj7dBqhhfzvEe8vW+KDfJj,UZXn,qRj1voHimuvI\",\n  \"properties\": {\n    \"key_0\": \"string\"\n  }\n}"
+                            },
+                            {
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/prices/:productKey/date/:date",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "prices",
+                                    ":productKey",
+                                    "date",
+                                    ":date"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productKey",
+                                      "value": "brandId=string,productId=string",
+                                      "description": "The unique identifier for a product"
+                                    },
+                                    {
+                                      "key": "date",
+                                      "value": "2020-06-14T10:00:00Z",
+                                      "description": "The date on which the price is checked"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "body": "{\n  \"type\": \"http://OZmqsaJVWFKTibexBXkrxUNmyoAe.gmqdx5VJ-VI5zVVCxhR1gXx10aLqq8v\",\n  \"title\": \"string\",\n  \"status\": 2471,\n  \"detail\": \"string\",\n  \"instance\": \"https://ePZJqo.vgchB-2fj7dBqhhfzvEe8vW+KDfJj,UZXn,qRj1voHimuvI\",\n  \"properties\": {\n    \"key_0\": \"string\"\n  }\n}"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "expectedStatus",
+      "value": ""
+    },
+    {
+      "key": "date",
+      "value": ""
+    },
+    {
+      "key": "expectedContentTypeHeader",
+      "value": ""
+    },
+    {
+      "key": "expectedResponseBody",
+      "value": ""
+    },
+    {
+      "key": "productKey",
+      "value": ""
+    }
+  ]
+}

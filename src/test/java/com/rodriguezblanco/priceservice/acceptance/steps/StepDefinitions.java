@@ -1,6 +1,5 @@
-package com.rodriguezblanco.priceservice.steps;
+package com.rodriguezblanco.priceservice.acceptance.steps;
 
-import com.rodriguezblanco.priceservice.AcceptanceTest;
 import com.rodriguezblanco.priceservice.prices.domain.ProductPriceRepository;
 import com.rodriguezblanco.priceservice.prices.domain.entity.ProductPrice;
 import com.rodriguezblanco.priceservice.prices.domain.valueobject.Currency;
@@ -12,10 +11,7 @@ import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.client.RestTestClient;
 import org.springframework.web.util.HtmlUtils;
 
@@ -25,12 +21,6 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@CucumberContextConfiguration
-@SpringBootTest(
-        classes = AcceptanceTest.class,
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-)
-@AutoConfigureRestTestClient
 public class StepDefinitions {
     @Autowired
     private RestTestClient restTestClient;
@@ -45,15 +35,15 @@ public class StepDefinitions {
     public ProductPrice priceEntryTransformer(Map<String, String> entry) {
         return ProductPrice.create(
                 ProductPriceIdentity.of(
-                        Integer.valueOf(entry.get("brand_id")),
+                        Short.valueOf(entry.get("brand_id")),
                         Long.valueOf(entry.get("product_id")),
-                        Integer.valueOf(entry.get("price_list"))
+                        Short.valueOf(entry.get("price_list"))
                 ),
                 Period.of(
                         LocalDateTime.parse(entry.get("start_date")),
                         LocalDateTime.parse(entry.get("end_date"))
                 ),
-                Integer.valueOf(entry.get("priority")),
+                Short.valueOf(entry.get("priority")),
                 SellingPrice.of(
                         Double.valueOf(entry.get("price")),
                         Currency.valueOf(entry.get("curr"))

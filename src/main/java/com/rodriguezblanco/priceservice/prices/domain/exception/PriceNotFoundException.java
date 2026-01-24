@@ -9,7 +9,7 @@ public class PriceNotFoundException extends RuntimeException {
         super(message);
     }
 
-    public static PriceNotFoundException forBrandProductAndDate(Integer brandId, Long productId, LocalDateTime date) {
+    public static PriceNotFoundException forBrandProductAndDate(Short brandId, Long productId, LocalDateTime date) {
         return new PriceNotFoundException(MSG_FOR_BRAND_AND_PRODUCT.formatted(brandId, productId, date));
     }
 }
