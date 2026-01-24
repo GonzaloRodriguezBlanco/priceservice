@@ -6,6 +6,6 @@ import com.rodriguezblanco.priceservice.prices.domain.exception.PriceNotFoundExc
 import java.time.LocalDateTime;
 
 public interface ProductPriceRepository {
-    ProductPrice findProductPriceInDate(Integer brandId, Long productId, LocalDateTime date) throws PriceNotFoundException;
+    ProductPrice findProductPriceInDate(Short brandId, Long productId, LocalDateTime date) throws PriceNotFoundException;
     ProductPrice save(ProductPrice productPrice);
 }
