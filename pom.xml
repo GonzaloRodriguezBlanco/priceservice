@@ -130,6 +130,7 @@
 		</dependency>
 	</dependencies>
 
+
 	<build>
 		<plugins>
 			<plugin>
@@ -139,7 +140,8 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.5.3</version>
+				<version>3.5.4</version>
+
 				<dependencies>
 					<dependency>
 						<groupId>me.fabriciorby</groupId>
@@ -147,75 +149,59 @@
 						<version>1.5.1</version>
 					</dependency>
 				</dependencies>
+
 				<configuration>
 					<useModulePath>false</useModulePath>
 					<useFile>false</useFile>
 					<printSummary>true</printSummary>
 					<reportFormat>plain</reportFormat>
 					<trimStackTrace>true</trimStackTrace>
+
+					<!-- IMPORTANT: allow JaCoCo to append -->
+					<argLine>@{argLine} -Xshare:off</argLine>
+
 					<statelessTestsetInfoReporter
 							implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter">
+						<theme>ASCII</theme>
 					</statelessTestsetInfoReporter>
-					<argLine>
-						-javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
-						-Xshare:off
-					</argLine>
 				</configuration>
-				<executions>
-					<execution>
-						<id>unit</id>
-						<configuration>
-							<includes>
-								<include>**/UnitSuite.java</include>
-							</includes>
-							<consoleOutputReporter>
-								<disable>true</disable>
-							</consoleOutputReporter>
-						</configuration>
-					</execution>
-					<execution>
-						<id>integration</id>
-						<configuration>
-							<includes>
-								<include>**/IntegrationSuite.java</include>
-							</includes>
-							<consoleOutputReporter>
-								<disable>true</disable>
-							</consoleOutputReporter>
-						</configuration>
-					</execution>
-					<execution>
-						<id>acceptance</id>
-						<configuration>
-							<includes>
-								<include>**/AcceptanceSuite.java</include>
-							</includes>
-							<consoleOutputReporter>
-								<disable>false</disable>
-							</consoleOutputReporter>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 
-			<!-- Integration + Acceptance tests -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>3.5.3</version>
-				<configuration>
-					<useFile>false</useFile>
-					<printSummary>true</printSummary>
-					<reportFormat>plain</reportFormat>
-					<trimStackTrace>true</trimStackTrace>
-				</configuration>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.14</version>
+
 				<executions>
+
+					<!-- Attach agent to Surefire -->
 					<execution>
+						<id>prepare-agent</id>
 						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
+							<goal>prepare-agent</goal>
 						</goals>
+						<configuration>
+							<destFile>${project.build.directory}/jacoco.exec</destFile>
+							<append>true</append>
+						</configuration>
 					</execution>
+
+					<!-- Generate report during test -->
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/jacoco-report</outputDirectory>
+							<excludes>
+								<exclude>**/acceptance/**</exclude>
+								<exclude>**/*Suite*</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+
 				</executions>
 			</plugin>
 
