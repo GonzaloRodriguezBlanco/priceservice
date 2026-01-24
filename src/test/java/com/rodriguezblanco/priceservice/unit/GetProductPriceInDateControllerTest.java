@@ -2,10 +2,6 @@ package com.rodriguezblanco.priceservice.unit;
 
 import com.rodriguezblanco.priceservice.prices.application.GetPriceOnDateQuery;
 import com.rodriguezblanco.priceservice.prices.domain.entity.ProductPrice;
-import com.rodriguezblanco.priceservice.prices.domain.valueobject.Currency;
-import com.rodriguezblanco.priceservice.prices.domain.valueobject.Period;
-import com.rodriguezblanco.priceservice.prices.domain.valueobject.ProductPriceIdentity;
-import com.rodriguezblanco.priceservice.prices.domain.valueobject.SellingPrice;
 import com.rodriguezblanco.priceservice.prices.user.rest.GetProductPriceInDateController;
 import com.rodriguezblanco.priceservice.prices.user.rest.request.ProductKey;
 import com.rodriguezblanco.priceservice.support.application.query.Query;
@@ -30,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(GetProductPriceInDateController.class)
 @Tag("unit")
-public class GetProductPriceInDateControllerITest {
+public class GetProductPriceInDateControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -40,38 +36,14 @@ public class GetProductPriceInDateControllerITest {
     private ProductKey productKey;
     private String date;
     private GetPriceOnDateQuery query;
-    private ProductPrice productPrice;
 
     @BeforeEach
     void setup() {
-        Long productId = 35455L;
-        Short brandId = 1;
-        LocalDateTime startDate = LocalDateTime.parse("2020-06-14T00:00:00");
-        LocalDateTime endDate = LocalDateTime.parse("2020-12-31T23:59:59");
-        Short priceList = 1;
-        Short priority = 0;
-        Double price = 35.50;
-        Currency currency = Currency.EUR;
+        ProductPrice productPrice = Mother.defaultProductPrice();
 
-        productKey = new ProductKey(productId, Integer.valueOf(brandId));
+        productKey = new ProductKey(Mother.defaultProductId(), Mother.defaultBrandId());
         date = "2020-06-14T10:00:00";
         query = new GetPriceOnDateQuery(productKey.brandId(), productKey.productId(), LocalDateTime.parse(date));
-        productPrice = ProductPrice.create(
-                ProductPriceIdentity.of(
-                        brandId,
-                        productId,
-                        priceList
-                ),
-                Period.of(
-                        startDate,
-                        endDate
-                ),
-                priority,
-                SellingPrice.of(
-                        price,
-                        currency
-                )
-        );
         given(queryBus.query(query)).willReturn(productPrice);
     }
 
