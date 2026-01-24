@@ -132,7 +132,47 @@ Once the service is running the OpenApi documentation will be in the links:
 
 ![Swagger UI](doc/images/swagger-ui.png)
 
+#### Request Example
+
+```
+GET http://localhost:8080/api/prices/productId=35455,brandId=1/date/2020-06-14T10:00:00
+
+```
+
+#### Response Example
+
+```json
+{
+  "productId": 35455,
+  "brandId": 1,
+  "priceList": 1,
+  "from": "2020-06-14T00:00:00",
+  "to": "2020-12-31T23:59:59",
+  "sellingPrice": 35.5,
+  "currency": "EUR"
+}
+```
+
+#### Postman
+There is a [postman collection](/src/test/postman/postman_collection.json), you can import it to test the api from Postman app. It is also used to test E2E.
+
 ### Testing
+
+#### Unit Suite
+
+To execute the unit suite in the terminal execute:
+
+```bash
+make unit
+```
+
+#### Integration Suite
+
+To execute the integration suite in the terminal execute:
+
+```bash
+make integration
+```
 
 #### Acceptance BDD testing
 To run the acceptance tests from terminal, do the following:
@@ -172,8 +212,12 @@ Feature:
 
 #### E2E contract testing
 
-There is a [postman collection](/src/test/postman/postman_collection.json) and a
-[dataset](/src/test/postman/e2e_postman_dataset.json) in /src/test/postman.
+There is a [postman collection](/src/test/postman/postman_collection.json) and a [dataset](/src/test/postman/e2e_postman_dataset.json) in /src/test/postman.
+
+You should have the server running, if this is not the case start it with:
+```shell
+make start
+```
 
 In order to run e2e/contract tests execute the following command from the terminal:
 ```shell

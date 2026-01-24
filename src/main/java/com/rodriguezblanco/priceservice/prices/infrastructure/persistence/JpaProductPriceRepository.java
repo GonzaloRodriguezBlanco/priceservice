@@ -26,7 +26,7 @@ public interface JpaProductPriceRepository extends Repository<Price, PriceIdenti
                 "ORDER BY priority DESC " +
                 "LIMIT 1"
     )
-    Price findByProductIdBrandIdAndDate(Long productId, Integer brandId, @Param("date") LocalDateTime date);
+    Price findByProductIdBrandIdAndDate(Long productId, Short brandId, @Param("date") LocalDateTime date);
 
     Price save(Price price);
 }

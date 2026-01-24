@@ -18,7 +18,7 @@ public class ProductPriceRepositoryImpl implements ProductPriceRepository {
     }
 
     @Override
-    public ProductPrice findProductPriceInDate(Integer brandId, Long productId, LocalDateTime date) throws PriceNotFoundException {
+    public ProductPrice findProductPriceInDate(Short brandId, Long productId, LocalDateTime date) throws PriceNotFoundException {
         Price price = this.jpaProductPriceRepository.findByProductIdBrandIdAndDate(productId, brandId, date);
         if (null == price) throw PriceNotFoundException.forBrandProductAndDate(brandId, productId, date);
         return PersistenceMapper.toDomain(price);    }

@@ -1,4 +1,4 @@
-package com.rodriguezblanco.priceservice.steps;
+package com.rodriguezblanco.priceservice.acceptance.steps;
 
 import com.rodriguezblanco.priceservice.prices.user.rest.response.ProductPriceResponse;
 import org.springframework.stereotype.Component;
