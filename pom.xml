@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.rodriguezblanco</groupId>
 	<artifactId>priceservice</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>Price Service</name>
 	<description>Service to search for product prices</description>
 	<url/>
