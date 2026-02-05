@@ -41,5 +41,5 @@ Desarrollar unos test al endpoint rest que validen las siguientes peticiones al 
 2. Calidad de Código.
 3. Resultados correctos en los test.
 
-![Service requirements](doc/images/service_requirements.png "Service requirements")
+![Service requirements](images/service_requirements.png "Service requirements")
 
